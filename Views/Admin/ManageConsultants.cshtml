@@ -1,0 +1,45 @@
+﻿@model IEnumerable<SmartAppointment.MVC.Models.Consultant>
+
+@{
+    ViewData["Title"] = "Danışmanları Yönet";
+}
+
+<h1>Danışmanlar</h1>
+
+<p>
+    <a asp-action="CreateConsultant" class="btn btn-primary">Yeni Danışman Ekle</a>
+</p>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Adı Soyadı</th>
+            <th>Email</th>
+            <th>Uzmanlık Alanı</th>
+            <th>Saatlik Ücret</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.user.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.user.Email)</td>
+                <td>@Html.DisplayFor(modelItem => item.ExpertiseArea)</td>
+                <td>@Html.DisplayFor(modelItem => item.HourlyRate)</td>
+                <td>
+                    <a asp-action="EditConsultant" asp-route-id="@item.ID">Düzenle</a> |
+                    <a asp-action="DeleteConsultant" asp-route-id="@item.ID">Sil</a> 
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
