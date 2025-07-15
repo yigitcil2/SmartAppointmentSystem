@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using SmartAppointment.MVC.Data;
@@ -7,6 +8,7 @@ using SmartAppointment.MVC.ViewModels;
 
 namespace SmartAppointment.MVC.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
 
@@ -15,25 +17,28 @@ namespace SmartAppointment.MVC.Controllers
         {
             _context = context;
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Dashboard()
         {
             return View();
         }
 
         //Listing consultants
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> ManageConsultants()
         {
             var consultants = await _context.Consultants.Include(c => c.user).ToListAsync();
             return View(consultants);
         }
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult CreateConsultant()
         {
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateConsultant(ConsultantCreateViewModel model)
         {
             if (ModelState.IsValid)
@@ -68,6 +73,7 @@ namespace SmartAppointment.MVC.Controllers
             return RedirectToAction(nameof(ManageConsultants));
         }
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> EditConsultant(int id)
         {
             var consultant = await _context.Consultants.Include(c => c.user).FirstOrDefaultAsync(c => c.ID == id);
@@ -87,6 +93,7 @@ namespace SmartAppointment.MVC.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> EditConsultant(int id, ConsultantCreateViewModel model)
         {
             if(id != model.ID)
@@ -104,7 +111,13 @@ namespace SmartAppointment.MVC.Controllers
             }
             consultant.user.Name = model.Name;
             consultant.user.Email = model.Email;
-            // Password Updating
+
+            if (!string.IsNullOrEmpty(model.Password))
+            {
+                var hashedPassword = BCrypt.Net.BCrypt.HashPassword(model.Password);
+                consultant.user.PasswordHash = hashedPassword;
+            }
+
             consultant.ExpertiseArea = model.ExpertiseArea;            
             consultant.HourlyRate = model.HourlyRate;
 
@@ -134,6 +147,7 @@ namespace SmartAppointment.MVC.Controllers
         }
         [HttpPost, ActionName("DeleteConsultant")]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> DeleteConsultantConfirmed(int id)
         {
             var consultant = await _context.Consultants.Include(c => c.user).FirstOrDefaultAsync(c => c.ID == id);
@@ -148,7 +162,29 @@ namespace SmartAppointment.MVC.Controllers
             TempData["SuccessMessage"] = "Consultant successfully deleted.";
             return RedirectToAction(nameof(ManageConsultants));
         }
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> ManageAppointments()
+        {
+            var appointments = await _context.Appointments
+                .Include(a=>a.User)
+                .Include(a=>a.Consultant)
+                    .ThenInclude(c=>c.user)
+                 .ToListAsync();
+            return View(appointments);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> DeleteAppointment(int id)
+        {
+            var appoitnment = await _context.Appointments.FindAsync(id);
+            if(appoitnment == null) { return NotFound(); }
+            _context.Appointments.Remove(appoitnment);
+            await _context.SaveChangesAsync();
+            TempData["SuccessMessage"] = "Appointment successfully deleted.";
+            return RedirectToAction(nameof(ManageAppointments));
 
+        }
     }
     }
 

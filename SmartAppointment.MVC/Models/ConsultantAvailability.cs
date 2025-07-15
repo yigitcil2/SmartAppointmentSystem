@@ -12,5 +12,6 @@
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
         public bool IsRecurring { get; set; }
+       // public DateTime StartDateTime { get;  set; }
     }
 }

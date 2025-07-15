@@ -1,0 +1,32 @@
+﻿@model IEnumerable<SmartAppointment.MVC.Models.Appointment>
+
+@{
+    ViewData["Title"] = "My Appointments";
+}
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Client</th>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.User.Name</td>
+                    <td>@item.AppointmentDate.ToString("dd MMM yyyy")</td>
+                    <td>@item.AppointmentDate.ToString("HH:mm")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No appointments found.</p>
+}

@@ -1,0 +1,34 @@
+﻿@model SmartAppointment.MVC.ViewModels.AppointmentCreateViewModel
+
+@{
+    ViewData["Title"] = "Book Appointment";
+}
+<h2>Book an Appointment</h2>
+
+<form asp-action="CreateAppointment" method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label asp-for="ConsultantId"></label>
+        <select asp-for="ConsultantId" class="form-control"
+                asp-items="@(new SelectList(ViewBag.Consultants, "ID", "user.Name"))">
+            <option value="">-- Select Consultant --</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ConsultantAvailabilityID"></label>
+        <select asp-for="ConsultantAvailabilityID" class="form-control"
+                asp-items="@(new SelectList(ViewBag.Availabilities, "ID", "DisplayText"))">
+            <option value="">-- Select Time Slot --</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Notes"></label>
+        <textarea asp-for="Notes" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Book Appointment</button>
+</form>
+

@@ -30,14 +30,24 @@ namespace SmartAppointment.MVC.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("AppointmentDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("ConsultantAvailabilityID")
                         .HasColumnType("int");
 
                     b.Property<int>("ConsultantId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                    b.Property<TimeSpan>("ConsultantWorkingHourEnd")
+                        .HasColumnType("time");
+
+                    b.Property<TimeSpan>("ConsultantWorkingHourStart")
+                        .HasColumnType("time");
+
+                    b.Property<string>("Notes")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -71,6 +81,10 @@ namespace SmartAppointment.MVC.Migrations
 
                     b.Property<decimal>("HourlyRate")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("userId")
                         .HasColumnType("int");
@@ -162,7 +176,7 @@ namespace SmartAppointment.MVC.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("SmartAppointment.MVC.Models.Consultant", "consultant")
+                    b.HasOne("SmartAppointment.MVC.Models.Consultant", "Consultant")
                         .WithMany("Appointments")
                         .HasForeignKey("ConsultantId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -174,11 +188,11 @@ namespace SmartAppointment.MVC.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
+                    b.Navigation("Consultant");
+
                     b.Navigation("ConsultantAvailability");
 
                     b.Navigation("User");
-
-                    b.Navigation("consultant");
                 });
 
             modelBuilder.Entity("SmartAppointment.MVC.Models.Consultant", b =>

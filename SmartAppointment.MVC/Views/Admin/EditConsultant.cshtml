@@ -18,7 +18,10 @@
         <input asp-for="Email" class="form-control" />
         <span asp-validation-for="Email" class="text-danger"></span>
     </div>
-    @* Güvenlik nedeniyle boş bırakmak veya ayrı bir şifre değiştirme alanı kullanmak daha iyidir. *@
+    <div class="form-group">
+        <label for="Password">New Password (Leave empty to keep current)</label>
+        <input asp-for="Password" class="form-control" type="password" />
+    </div>
     <div class="form-group">
         <label asp-for="Password">Şifre (Değiştirmek istemiyorsanız boş bırakın)</label>
         <input asp-for="Password" type="password" class="form-control" />
@@ -29,20 +32,13 @@
         <input asp-for="ExpertiseArea" class="form-control" />
         <span asp-validation-for="ExpertiseArea" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label asp-for="Bio"></label>
-        <textarea asp-for="Bio" class="form-control" rows="3"></textarea>
-        <span asp-validation-for="Bio" class="text-danger"></span>
-    </div>
+
     <div class="form-group">
         <label asp-for="HourlyRate"></label>
         <input asp-for="HourlyRate" type="number" step="0.01" class="form-control" />
         <span asp-validation-for="HourlyRate" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label asp-for="ProfilePictureUrl"></label>
-        <input asp-for="ProfilePictureUrl" class="form-control" />
-        <span asp-validation-for="ProfilePictureUrl" class="text-danger"></span>
+
     </div>
     <button type="submit" class="btn btn-primary">Kaydet</button>
     <a asp-action="ManageConsultants" class="btn btn-secondary">İptal</a>

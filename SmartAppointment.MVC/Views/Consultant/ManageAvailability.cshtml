@@ -1,0 +1,39 @@
+﻿
+@model List<SmartAppointment.MVC.Models.ConsultantAvailability>
+
+<h2>My Availability Schedule</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Actions</th> //
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var availability in Model)
+        {
+            <tr>
+                <td>@availability.StartDate.ToString("yyyy-MM-dd")</td>
+                <td>@availability.StartTime.ToString(@"hh\:mm")</td>
+                <td>@availability.EndTime.ToString(@"hh\:mm")</td>
+                <td>                   
+                    <a asp-action="EditAvailability" asp-route-id="@availability.ID">Edit</a> |
+                <td>
+                    <form asp-action="DeleteAvailability" asp-route-id="@availability.ID" method="post" style="display:inline;">
+                            @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this availability?');">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="CreateAvailability" class="btn btn-primary mb-3">Add New Availability</a>

@@ -1,0 +1,41 @@
+﻿@model SmartAppointment.MVC.Models.ConsultantAvailability
+
+@{
+    ViewData["Title"] = "Add Availability";
+}
+
+<h2>Add Availability</h2>
+
+<form asp-action="CreateAvailability" method="post">
+    <div class="form-group">
+        <label asp-for="StartDate"></label>
+        <input asp-for="StartDate" class="form-control" type="date" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EndDate"></label>
+        <input asp-for="EndDate" class="form-control" type="date" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DayOfWeek"></label>
+        <select asp-for="DayOfWeek" class="form-control" asp-items="Html.GetEnumSelectList<DayOfWeek>()"></select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StartTime"></label>
+        <input asp-for="StartTime" class="form-control" type="time" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EndTime"></label>
+        <input asp-for="EndTime" class="form-control" type="time" />
+    </div>
+
+    <div class="form-check mt-2">
+        <input asp-for="IsRecurring" class="form-check-input" type="checkbox" />
+        <label asp-for="IsRecurring" class="form-check-label"></label>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Save</button>
+</form>

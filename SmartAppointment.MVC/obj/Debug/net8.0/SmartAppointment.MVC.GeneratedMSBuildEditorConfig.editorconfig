@@ -25,13 +25,43 @@ build_property.SupportLocalizedComponentNames =
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = C:\Users\yigit\OneDrive\Masaüstü\asp.net\SmartAppointment\SmartAppointment.MVC
 build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
 
 [C:/Users/yigit/OneDrive/Masaüstü/asp.net/SmartAppointment/SmartAppointment.MVC/Views/Admin/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/yigit/OneDrive/Masaüstü/asp.net/SmartAppointment/SmartAppointment.MVC/Views/Admin/ManageAppoitnment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTWFuYWdlQXBwb2l0bm1lbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/yigit/OneDrive/Masaüstü/asp.net/SmartAppointment/SmartAppointment.MVC/Views/Admin/ManageConsultants.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTWFuYWdlQ29uc3VsdGFudHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/yigit/OneDrive/Masaüstü/asp.net/SmartAppointment/SmartAppointment.MVC/Views/Appointment/CreateAppointment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwb2ludG1lbnRcQ3JlYXRlQXBwb2ludG1lbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/yigit/OneDrive/Masaüstü/asp.net/SmartAppointment/SmartAppointment.MVC/Views/Appointment/MyAppointments.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwb2ludG1lbnRcTXlBcHBvaW50bWVudHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/yigit/OneDrive/Masaüstü/asp.net/SmartAppointment/SmartAppointment.MVC/Views/Consultant/CreateAvailability.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uc3VsdGFudFxDcmVhdGVBdmFpbGFiaWxpdHkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/yigit/OneDrive/Masaüstü/asp.net/SmartAppointment/SmartAppointment.MVC/Views/Consultant/EditAvailability.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uc3VsdGFudFxFZGl0QXZhaWxhYmlsaXR5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/yigit/OneDrive/Masaüstü/asp.net/SmartAppointment/SmartAppointment.MVC/Views/Consultant/ManageAvailability.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uc3VsdGFudFxNYW5hZ2VBdmFpbGFiaWxpdHkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/yigit/OneDrive/Masaüstü/asp.net/SmartAppointment/SmartAppointment.MVC/Views/Consultant/MyAppoitnments.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29uc3VsdGFudFxNeUFwcG9pdG5tZW50cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/yigit/OneDrive/Masaüstü/asp.net/SmartAppointment/SmartAppointment.MVC/Views/Home/Index.cshtml]

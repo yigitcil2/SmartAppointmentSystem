@@ -4,6 +4,7 @@
     {
         public int ID { get; set; }
         public int userId { get; set; } //Foreign Key
+        public string Name { get; set; }
         public User user { get; set; }
         public string ExpertiseArea { get; set; }
         public decimal HourlyRate { get; set; }
